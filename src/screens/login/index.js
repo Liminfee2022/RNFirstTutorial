@@ -1,6 +1,7 @@
 import React from 'react';
 import {Text, View} from 'react-native';
 import Container from '../../components/common/Container';
+import CustomButton from '../../components/common/CustomButton';
 import Input from '../../components/common/Input';
 
 const Login = () => {
@@ -23,6 +24,8 @@ const Login = () => {
         iconPosition="right"
         // error={'This field is required'}
       />
+
+      <CustomButton title="Submit" loading={true} disabled={true} />
     </Container>
   );
 };
