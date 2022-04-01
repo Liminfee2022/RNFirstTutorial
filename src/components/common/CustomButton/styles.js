@@ -10,5 +10,7 @@ export default StyleSheet.create({
     alignItems: 'center',
     justifyContent: 'space-evenly',
   },
-  loadloaderSectioned: {},
+  loaderSection: {
+    flexDirection: 'row',
+  },
 });

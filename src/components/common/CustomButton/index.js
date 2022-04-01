@@ -50,7 +50,11 @@ const CustomButton = ({
       <View style={styles.loaderSection}>
         {loading && <ActivityIndicator color={colors.primary} />}
         {title && (
-          <Text style={{color: disabled ? 'black' : colors.white}}>
+          <Text
+            style={{
+              color: disabled ? 'black' : colors.white,
+              paddingLeft: loading ? 5 : 0,
+            }}>
             {title}
           </Text>
         )}

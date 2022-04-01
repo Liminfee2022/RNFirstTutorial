@@ -25,7 +25,10 @@ const Login = () => {
         // error={'This field is required'}
       />
 
-      <CustomButton title="Submit" loading={true} disabled={true} />
+      <CustomButton secondary title="Submit" loading={true} disabled={true} />
+      <CustomButton secondary title="Click Me" />
+      <CustomButton primary title="Submit" loading={true} disabled={true} />
+      <CustomButton danger title="Submit" />
     </Container>
   );
 };

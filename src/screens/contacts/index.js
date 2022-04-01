@@ -1,10 +1,14 @@
 import React from 'react';
-import {Text, View} from 'react-native';
+import {Text, View, Button} from 'react-native';
 import Container from '../../components/common/Container';
 
-const Contacts = () => (
+const Contacts = ({navigation}) => (
   <Container>
     <Text>Contacts</Text>
+    <Button
+      title="Navigate"
+      onPress={() => navigation.navigate('Contact create')}
+    />
   </Container>
 );
 
