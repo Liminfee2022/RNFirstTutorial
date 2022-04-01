@@ -8,7 +8,14 @@ import styles from './styles';
 import {REGISTER} from '../../constants/routeName';
 import Message from '../common/Message';
 
-const LoginComponent = ({value}) => {
+const LoginComponent = ({
+  error,
+  form,
+  justSignedUp,
+  onChange,
+  loading,
+  onSubmit,
+}) => {
   const navigation = useNavigation();
   return (
     <Container>
@@ -20,36 +27,40 @@ const LoginComponent = ({value}) => {
         <Text style={styles.title}>Welcom to RNContacts</Text>
         <Text style={styles.subTitle}>Please login here</Text>
 
-        <Message
-          retry
-          retryFn={() => {
-            console.log('sdfsf');
-          }}
-          onDismiss={() => {}}
-          primary
-          message="invalid credential"
-        />
         <View style={styles.form}>
+          {error && !error.error && (
+            <Message
+              onDismiss={() => {}}
+              danger
+              message="invalid credentials"
+            />
+          )}
+
+          {error?.error && <Message danger onDismiss message={error?.error} />}
           <Input
             label="Username"
-            // onChangeText={text => onChangeText(text)}
-            value={value}
-            // icon={<Text>HIDE</Text>}
             iconPosition="right"
             placeholder="Enter Username"
-            error={'This field is required'}
+            onChangeText={value => {
+              onChange({name: 'userName', value});
+            }}
           />
           <Input
             label="Password"
-            // onChangeText={text => onChangeText(text)}
-            value={value}
-            icon={<Text>HIDE</Text>}
             iconPosition="right"
-            // error={'This field is required'}
             placeholder="Enter Password"
             secureTextEntry={true}
+            onChangeText={value => {
+              onChange({name: 'password', value});
+            }}
           />
-          <CustomButton secondary title="Submit" loading={true} />
+          <CustomButton
+            disabled={loading}
+            onPress={onSubmit}
+            loading={loading}
+            primary
+            title="Submit"
+          />
           <View style={styles.creacteSection}>
             <Text style={styles.inforText}>Need a new account?</Text>
             <TouchableOpacity

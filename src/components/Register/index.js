@@ -6,6 +6,7 @@ import CustomButton from '../common/CustomButton';
 import Input from '../common/Input';
 import styles from './styles';
 import {LOGIN} from '../../constants/routeName';
+import Message from '../common/Message';
 
 const RegisterComponent = ({
   onChange,
@@ -15,7 +16,6 @@ const RegisterComponent = ({
   loading,
   errors,
 }) => {
-  console.log('error', error);
   const navigation = useNavigation();
   return (
     <Container>
@@ -27,7 +27,9 @@ const RegisterComponent = ({
         <Text style={styles.title}>Welcom to RNContacts</Text>
         <Text style={styles.subTitle}>Create a free account here</Text>
         <View style={styles.form}>
-          {error?.error && <Text>{error?.error}</Text>}
+          {error?.error && (
+            <Message danger retry retryFn={() => {}} message={error?.error} />
+          )}
           <Input
             label="Username"
             iconPosition="right"

@@ -3,11 +3,15 @@ import {
   REGISTER_LOADING,
   REGISTER_SUCCESS,
   CLEAR_AUTH_STATE,
+  LOGIN_FAIL,
+  LOGIN_LOADING,
+  LOGIN_SUCCESS,
 } from '../../constants/actionTypes';
 import {LOGIN} from '../../constants/routeName';
 
 const authReducer = (state, {type, payload}) => {
   switch (type) {
+    case LOGIN_LOADING:
     case REGISTER_LOADING:
       return {
         ...state,
@@ -19,7 +23,15 @@ const authReducer = (state, {type, payload}) => {
         loading: false,
         data: payload,
       };
+    case LOGIN_SUCCESS:
+      return {
+        ...state,
+        loading: false,
+        data: payload,
+        isLoggedIn: true,
+      };
     case REGISTER_FAIL:
+    case LOGIN_FAIL:
       return {
         ...state,
         loading: false,
