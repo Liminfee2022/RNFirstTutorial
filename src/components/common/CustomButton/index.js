@@ -48,7 +48,9 @@ const CustomButton = ({
       onPress={onPress}
       style={[styles.buttonContainer, {backgroundColor: getBgColor()}]}>
       <View style={styles.loaderSection}>
-        {loading && <ActivityIndicator color={colors.primary} />}
+        {loading && (
+          <ActivityIndicator color={disabled ? colors.primary : colors.white} />
+        )}
         {title && (
           <Text
             style={{
