@@ -6,6 +6,7 @@ import CustomButton from '../common/CustomButton';
 import Input from '../common/Input';
 import styles from './styles';
 import {REGISTER} from '../../constants/routeName';
+import Message from '../common/Message';
 
 const LoginComponent = ({value}) => {
   const navigation = useNavigation();
@@ -18,6 +19,16 @@ const LoginComponent = ({value}) => {
       <View>
         <Text style={styles.title}>Welcom to RNContacts</Text>
         <Text style={styles.subTitle}>Please login here</Text>
+
+        <Message
+          retry
+          retryFn={() => {
+            console.log('sdfsf');
+          }}
+          onDismiss={() => {}}
+          primary
+          message="invalid credential"
+        />
         <View style={styles.form}>
           <Input
             label="Username"
