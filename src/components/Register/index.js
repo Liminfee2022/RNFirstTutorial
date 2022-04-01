@@ -7,7 +7,15 @@ import Input from '../common/Input';
 import styles from './styles';
 import {LOGIN} from '../../constants/routeName';
 
-const RegisterComponent = ({onChange, onSubmit, form, errors}) => {
+const RegisterComponent = ({
+  onChange,
+  onSubmit,
+  form,
+  error,
+  loading,
+  errors,
+}) => {
+  console.log('error', error);
   const navigation = useNavigation();
   return (
     <Container>
@@ -19,13 +27,12 @@ const RegisterComponent = ({onChange, onSubmit, form, errors}) => {
         <Text style={styles.title}>Welcom to RNContacts</Text>
         <Text style={styles.subTitle}>Create a free account here</Text>
         <View style={styles.form}>
+          {error?.error && <Text>{error?.error}</Text>}
           <Input
             label="Username"
-            // value={value}
-            // icon={<Text>HIDE</Text>}
             iconPosition="right"
             placeholder="Enter Username"
-            error={errors.userName}
+            error={errors.userName || error?.username?.[0]}
             onChangeText={value => onChange({name: 'userName', value})}
           />
           <Input
@@ -34,7 +41,7 @@ const RegisterComponent = ({onChange, onSubmit, form, errors}) => {
             // value={value}
             icon={<Text>HIDE</Text>}
             iconPosition="right"
-            error={errors.firstName}
+            error={errors.firstName || error?.first_name?.[0]}
             placeholder="Enter First name"
             secureTextEntry={true}
           />
@@ -44,7 +51,7 @@ const RegisterComponent = ({onChange, onSubmit, form, errors}) => {
             // icon={<Text>HIDE</Text>}
             iconPosition="right"
             placeholder="Enter Last name"
-            error={errors.lastName}
+            error={errors.lastName || error?.last_name?.[0]}
             onChangeText={value => onChange({name: 'lastName', value})}
           />
           <Input
@@ -53,7 +60,7 @@ const RegisterComponent = ({onChange, onSubmit, form, errors}) => {
             // icon={<Text>HIDE</Text>}
             iconPosition="right"
             placeholder="Enter Email"
-            error={errors.email}
+            error={errors.email || error?.email?.[0]}
             onChangeText={value => onChange({name: 'email', value})}
           />
           <Input
@@ -61,7 +68,7 @@ const RegisterComponent = ({onChange, onSubmit, form, errors}) => {
             // value={value}
             icon={<Text>HIDE</Text>}
             iconPosition="right"
-            error={errors.password}
+            error={errors.password || error?.password?.[0]}
             placeholder="Enter Password"
             secureTextEntry={true}
             onChangeText={value => onChange({name: 'password', value})}
@@ -69,8 +76,9 @@ const RegisterComponent = ({onChange, onSubmit, form, errors}) => {
           <CustomButton
             secondary
             title="Submit"
-            loading={true}
+            loading={loading}
             onPress={onSubmit}
+            disabled={loading}
           />
           <View style={styles.creacteSection}>
             <Text style={styles.inforText}>Already have an account?</Text>
