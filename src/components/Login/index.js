@@ -29,6 +29,13 @@ const LoginComponent = ({
         <Text style={styles.subTitle}>Please login here</Text>
 
         <View style={styles.form}>
+          {justSignedUp && (
+            <Message
+              onDismiss={() => {}}
+              success
+              message="Account created successfully"
+            />
+          )}
           {error && !error.error && (
             <Message
               onDismiss={() => {}}
@@ -41,6 +48,7 @@ const LoginComponent = ({
           <Input
             label="Username"
             iconPosition="right"
+            value={form.userName || null}
             placeholder="Enter Username"
             onChangeText={value => {
               onChange({name: 'userName', value});
