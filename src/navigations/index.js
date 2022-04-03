@@ -1,7 +1,7 @@
 import React, {useContext, useEffect} from 'react';
 import {ActivityIndicator} from 'react-native';
 import {NavigationContainer} from '@react-navigation/native';
-import DrawerNavigator from './DrawerNavigtor';
+import DrawerNavigator from './DrawerNavigator';
 import AuthNavigator from './AuthNavigator';
 import {GlobalContext} from '../context/Provider';
 import AsyncStorage from '@react-native-async-storage/async-storage';

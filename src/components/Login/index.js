@@ -17,6 +17,7 @@ const LoginComponent = ({
   onSubmit,
 }) => {
   const navigation = useNavigation();
+  const [isSecureEntry, setIsSecureEntry] = React.useState(true);
   return (
     <Container>
       <Image
@@ -24,7 +25,7 @@ const LoginComponent = ({
         style={styles.logoImage}
       />
       <View>
-        <Text style={styles.title}>Welcom to RNContacts</Text>
+        <Text style={styles.title}>Welcome to RNContacts</Text>
         <Text style={styles.subTitle}>Please login here</Text>
 
         <View style={styles.form}>
@@ -49,7 +50,15 @@ const LoginComponent = ({
             label="Password"
             iconPosition="right"
             placeholder="Enter Password"
-            secureTextEntry={true}
+            secureTextEntry={isSecureEntry}
+            icon={
+              <TouchableOpacity
+                onPress={() => {
+                  setIsSecureEntry(prev => !prev);
+                }}>
+                <Text>{isSecureEntry ? 'Show' : 'Hide'}</Text>
+              </TouchableOpacity>
+            }
             onChangeText={value => {
               onChange({name: 'password', value});
             }}
@@ -61,8 +70,8 @@ const LoginComponent = ({
             primary
             title="Submit"
           />
-          <View style={styles.creacteSection}>
-            <Text style={styles.inforText}>Need a new account?</Text>
+          <View style={styles.createSection}>
+            <Text style={styles.infoText}>Need a new account?</Text>
             <TouchableOpacity
               onPress={() => {
                 navigation.navigate(REGISTER);

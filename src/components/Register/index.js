@@ -17,6 +17,8 @@ const RegisterComponent = ({
   errors,
 }) => {
   const navigation = useNavigation();
+  const [isSecureEntry, setIsSecureEntry] = React.useState(true);
+
   return (
     <Container>
       <Image
@@ -24,7 +26,7 @@ const RegisterComponent = ({
         style={styles.logoImage}
       />
       <View>
-        <Text style={styles.title}>Welcom to RNContacts</Text>
+        <Text style={styles.title}>Welcome to RNContacts</Text>
         <Text style={styles.subTitle}>Create a free account here</Text>
         <View style={styles.form}>
           {error?.error && (
@@ -40,7 +42,6 @@ const RegisterComponent = ({
           <Input
             label="First name"
             onChangeText={value => onChange({name: 'firstName', value})}
-            // value={value}
             icon={<Text>HIDE</Text>}
             iconPosition="right"
             error={errors.firstName || error?.first_name?.[0]}
@@ -49,8 +50,6 @@ const RegisterComponent = ({
           />
           <Input
             label="Last name"
-            // value={value}
-            // icon={<Text>HIDE</Text>}
             iconPosition="right"
             placeholder="Enter Last name"
             error={errors.lastName || error?.last_name?.[0]}
@@ -58,16 +57,22 @@ const RegisterComponent = ({
           />
           <Input
             label="Email"
-            // value={value}
-            // icon={<Text>HIDE</Text>}
             iconPosition="right"
             placeholder="Enter Email"
+            secureTextEntry={isSecureEntry}
+            icon={
+              <TouchableOpacity
+                onPress={() => {
+                  setIsSecureEntry(prev => !prev);
+                }}>
+                <Text>{isSecureEntry ? 'Show' : 'Hide'}</Text>
+              </TouchableOpacity>
+            }
             error={errors.email || error?.email?.[0]}
             onChangeText={value => onChange({name: 'email', value})}
           />
           <Input
             label="Password"
-            // value={value}
             icon={<Text>HIDE</Text>}
             iconPosition="right"
             error={errors.password || error?.password?.[0]}
@@ -82,8 +87,8 @@ const RegisterComponent = ({
             onPress={onSubmit}
             disabled={loading}
           />
-          <View style={styles.creacteSection}>
-            <Text style={styles.inforText}>Already have an account?</Text>
+          <View style={styles.createSection}>
+            <Text style={styles.infoText}>Already have an account?</Text>
             <TouchableOpacity
               onPress={() => {
                 navigation.navigate(LOGIN);

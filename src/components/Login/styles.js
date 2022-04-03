@@ -21,10 +21,10 @@ export default StyleSheet.create({
     fontWeight: '500',
   },
   form: {paddingTop: 20},
-  creacteSection: {
+  createSection: {
     flexDirection: 'row',
   },
-  inforText: {
+  infoText: {
     fontSize: 17,
     color: 'black',
   },
