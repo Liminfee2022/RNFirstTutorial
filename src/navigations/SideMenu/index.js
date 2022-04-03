@@ -9,8 +9,9 @@ import {
 } from 'react-native';
 import Container from '../../components/common/Container';
 import {SETTINGS} from '../../constants/routeName';
+import logout from '../../context/actions/auth/logout';
 import styles from './style';
-const SideMenu = ({navigation}) => {
+const SideMenu = ({navigation, authDispatch}) => {
   const handleLogout = () => {
     navigation.toggleDrawer();
     Alert.alert('Logout!', 'Are you sure you want to Logout', [
@@ -20,7 +21,9 @@ const SideMenu = ({navigation}) => {
       },
       {
         text: 'OK',
-        onPress: () => {},
+        onPress: () => {
+          logout()(authDispatch);
+        },
       },
     ]);
   };

@@ -6,6 +6,7 @@ import {
   LOGIN_FAIL,
   LOGIN_LOADING,
   LOGIN_SUCCESS,
+  LOGOUT,
 } from '../../constants/actionTypes';
 import {LOGIN} from '../../constants/routeName';
 
@@ -29,6 +30,13 @@ const authReducer = (state, {type, payload}) => {
         loading: false,
         data: payload,
         isLoggedIn: true,
+      };
+    case LOGOUT:
+      return {
+        ...state,
+        loading: false,
+        data: null,
+        isLoggedIn: false,
       };
     case REGISTER_FAIL:
     case LOGIN_FAIL:
